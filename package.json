@@ -1,0 +1,35 @@
+{
+  "name": "web250-final-project",
+  "version": "1.0.0",
+  "description": "My WEB250 Final Project, based upon WEB200 Final Projects UI work",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "build-css": "tailwindcss build style.css -o css/style.css",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://ErikDebye@bitbucket.org/erikdebye/web250-final-project.git"
+  },
+  "keywords": [
+    "expressJS project"
+  ],
+  "author": "Erik Debye",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/erikdebye/web250-final-project/issues"
+  },
+  "homepage": "https://bitbucket.org/erikdebye/web250-final-project#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "connect-mongodb-session": "^3.1.1",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "handlebars": "^4.7.7",
+    "mongodb": "^5.2.0",
+    "nodemon": "^2.0.21",
+    "tailwindcss": "^3.3.1"
+  }
+}
