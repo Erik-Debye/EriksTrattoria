@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Albert+Sans&family=Bubblegum+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./src/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./src/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./src/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="./src/favicons/site.webmanifest" />
+    <link rel="mask-icon" href="./src/favicons/safari-pinned-tab.svg" color="#020202" />
+    <meta name="msapplication-TileColor" content="#2b5797" />
+    <meta name="theme-color" content="#000000" />
+    <!-- End Favicons -->
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Erik's Pizza Shop</title>
+  </head>
+  <body class="bg-white">
+    <header class="h-[15vh] text-red flex items-center justify-between pl-20 pr-20">
+      <img class="h-[12vh]" src="./src/svg/Eriks Trattoria.svg" alt="Erik's Trattoria Logo" />
+      <ul class="flex flex-row font-sans items-center justify-evenly gap-10 text-2xl">
+        <li class="cursor-pointer">
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/login">Login</a>
+        </li>
+        <li class="cursor-pointer">
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/register">Register</a>
+        </li>
+        <li class="cursor-pointer">
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/order">Order</a>
+        </li>
+      </ul>
+    </header>
+    <section class="bg-blue h-[85vh] flex items-start">
+      <div class="w-[45%] h-[100%] ml-16 text-6xl text-white font-serif flex items-start flex-col justify-center gap-4">
+        <h1 class="pt-8">Truly Authentic Italian Ingredients</h1>
+        <h1 class="pb-8">Truly Authentic Pizza</h1>
+        <div class="rounded-2xl overflow-hidden relative">
+          <video class="left-0 top-0 relative" autoplay="autoplay" muted="" controls="" loop="">
+            <source src="./src/video/pizza-minified.webm" type="video/webm" />
+            <source src="./src/video/pizza-minified.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      <div class="h-[50%] w-[48%] m-auto flex flex-col items-start text-white font-sans">
+        <h2 class="text-5xl pt-16 pb-8">Erik's Trattoria is <span class="text-orange">now open!</span></h2>
+        <h3 class="text-4xl text-center">Visit us in person, or schedule a carryout delivery below</h3>
+        <button class="text-3xl text-red mt-16 bg-white p-3 rounded-2xl cursor-pointer hover:text-orange hover:bg-red">
+          <a href="/order">Order Online</a>
+        </button>
+      </div>
+    </section>
+  </body>
+</html>

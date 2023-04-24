@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Albert+Sans&family=Bubblegum+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./src/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./src/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./src/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="./src/favicons/site.webmanifest" />
+    <link rel="mask-icon" href="./src/favicons/safari-pinned-tab.svg" color="#020202" />
+    <meta name="msapplication-TileColor" content="#2b5797" />
+    <meta name="theme-color" content="#000000" />
+    <!-- End Favicons -->
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Order a Pizza</title>
+  </head>
+  <body class="bg-white">
+    <header class="h-[15vh] text-red flex items-center justify-between pl-20 pr-20">
+      <img class="h-[12vh]" src="./src/svg/Eriks Trattoria.svg" alt="Erik's Trattoria Logo" />
+      <ul class="flex flex-row font-sans items-center justify-evenly gap-10 text-2xl">
+        <li class="cursor-pointer">
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/">Home</a>
+        </li>
+        <li class="cursor-pointer">
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/login">Login</a>
+        </li>
+        <li class="cursor-pointer">
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/register">Register</a>
+        </li>
+        <li class="cursor-pointer">
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/order">Order</a>
+        </li>
+      </ul>
+    </header>
+    <section class="bg-blue min-h-[85vh] h-fit w-screen flex flex-row mr-auto ml-auto items-start justify-start">
+      <div class="flex flex-col gap-6 h-[100%] items-center justify-start font-sans text-white text-2xl w-[100%]">
+        <h1 class="text-white font-serif text-center text-6xl pt-8 pb-4">Create a new pizza order!</h1>
+        <form method="post" class="flex flex-col gap-14 items-start ml-40 w-[90%] h-full justify-start">
+          <fieldset class="flex gap-10">
+            <legend>Select a size</legend>
+            <div class="flex items-center">
+              <input class="h-[1.2rem] w-[1.2rem]" type="radio" id="12" name="size" value="12" checked="" /><label
+                class="p-3"
+                for="12"
+                >12 inches - $12.99</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input class="h-[1.2rem] w-[1.2rem]" type="radio" id="14" name="size" value="14" /><label
+                class="p-3"
+                for="14"
+                >14 inches - $14.99</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input class="h-[1.2rem] w-[1.2rem]" type="radio" id="16" name="size" value="16" /><label
+                class="p-3"
+                for="16"
+                >16 inches - $17.99</label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="flex flex-wrap" required="">
+            <legend>Choose your toppings:</legend>
+            <ul class="list-none flex gap-10 w-full text-xl pt-6">
+              <li>+$1.25/each for 12" pizza</li>
+              <li>+$1.50/each for 14" pizza</li>
+              <li>+$1.75/each for 16" pizza</li>
+            </ul>
+            <div class="flex flex-wrap gap-4 justify-start pt-6">
+              <div class="flex gap-4">
+                <input type="checkbox" id="cheese" name="toppings[]" value="cheese" /><label for="cheese">Cheese</label>
+              </div>
+              <div class="flex gap-4">
+                <input type="checkbox" id="pepperoni" name="toppings[]" value="pepperoni" /><label for="pepperoni"
+                  >Pepperoni</label
+                >
+              </div>
+              <div class="flex gap-4">
+                <input type="checkbox" id="mushrooms" name="toppings[]" value="mushrooms" /><label for="mushrooms"
+                  >Mushrooms</label
+                >
+              </div>
+              <div class="flex gap-4">
+                <input type="checkbox" id="spinach" name="toppings[]" value="spinach" /><label for="spinach"
+                  >Spinach</label
+                >
+              </div>
+              <div class="flex gap-4">
+                <input type="checkbox" id="basil" name="toppings[]" value="basil" /><label for="basil">Basil</label>
+              </div>
+              <div class="flex gap-4">
+                <input type="checkbox" id="olives" name="toppings[]" value="olives" /><label for="olives">Olives</label>
+              </div>
+              <div class="flex gap-4">
+                <input type="checkbox" id="garlic" name="toppings[]" value="garlic" /><label for="garlic">Garlic</label>
+              </div>
+              <div class="flex gap-4">
+                <input type="checkbox" id="eggplant" name="toppings[]" value="eggplant" /><label for="eggplant"
+                  >Eggplant</label
+                >
+              </div>
+              <div class="flex gap-4">
+                <input type="checkbox" id="ricotta" name="toppings[]" value="ricotta" /><label for="ricotta"
+                  >Ricotta</label
+                >
+              </div>
+            </div>
+          </fieldset>
+          <div class="flex gap-8">
+            <p class="flex items-center gap-4">
+              <label for="amount">How Many:</label>
+              <input
+                class="p-2 rounded-2xl text-black font-sans"
+                type="text"
+                id="amount"
+                name="amount"
+                pattern="[0-9]+"
+                value="1"
+                required
+              />
+            </p>
+            <input
+              class="text-2xl cursor-pointer text-red bg-white p-3 rounded-2xl hover:text-orange hover:bg-red"
+              type="submit"
+              id="addorder"
+              name="addorder"
+              value="Add Another Pizza"
+            />
+          </div>
+          {{#if orderError}}
+          <h2 class="text-center text-white font-sans text-2xl">{{orderError}}</h2>
+          {{/if}}
+        </form>
+      </div>
+      <div class="flex flex-col gap-4 items-center justify-start font-sans text-2xl text-white w-[100%] h-[100%] mb-4">
+        {{#if orderTable}} {{{orderTable}}} {{else}}
+        <h2 class="mt-[5%]">You have not yet added any pizzas to your order!</h2>
+        <h2>Add some via the form on the left.</h2>
+        {{/if}}
+      </div>
+    </section>
+  </body>
+</html>

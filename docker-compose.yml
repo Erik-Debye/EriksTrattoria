@@ -1,0 +1,13 @@
+services:
+  express-server:
+    container_name: express-server
+    build: .
+    ports:
+      - '80:3000'
+    depends_on:
+      - mongodb
+  mongodb:
+    container_name: 'mongodb'
+    image: mongo
+    ports:
+      - '27017:27017'
