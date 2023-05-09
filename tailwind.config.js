@@ -6,12 +6,15 @@ export default {
       black: '#001524',
       blue: '#15616D',
       white: '#FFECD1',
+      clearWhite: '#edebe4',
+      yellow: '#f7d340',
       orange: '#FF7D00',
       red: '#6C2815',
+      green: '#0bba02',
     },
     fontFamily: {
       sans: ['Albert Sans', 'sans-serif'],
-      serif: ['Bubblegum Sans', 'serif'],
+      serif: ['Noto Serif JP', 'serif'],
     },
     extend: {
       animation: {

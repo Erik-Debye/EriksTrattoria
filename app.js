@@ -14,6 +14,12 @@ import bcrypt from 'bcrypt';
 //create app
 const app = express();
 
+function logRequests(req, res, next) {
+  console.log(`Received ${req.method} request for ${req.url}`);
+  next();
+}
+app.use(logRequests);
+
 //create sessions
 MongoClient.connect('mongodb://mongodb/erikstrattoria', { useNewUrlParser: true })
   .then((_) => {
