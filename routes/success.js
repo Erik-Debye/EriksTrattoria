@@ -16,6 +16,10 @@ success.get('/', async (req, res) => {
     data.orderTable = createTable(order);
   }
 
+  //reset orderNum (EDIT: Orginally I tried setting this to null, but it doesn't work since MongoDB requires int32. Could do 0, but deleting it also works cause we recreate it when making a new order)
+  delete req.session.orderNum;
+  delete req.session.customerid;
+
   const source = fs.readFileSync('./templates/success.html');
   const template = handlebars.compile(source.toString());
   const page = template(data);
@@ -23,9 +27,6 @@ success.get('/', async (req, res) => {
 });
 
 success.post('/', async (req, res) => {
-  //reset orderNum
-  req.session.orderNum = null;
-
   if (req.body['home']) {
     res.redirect('/');
   } else {
@@ -43,7 +44,7 @@ function createTable(order) {
   let table = `<h1 class="font-serif text-6xl pt-8 pb-4">Your Order!</h1>`;
 
   order.order.forEach((pizza) => {
-    table += `<div class="flex gap-10 items-center justify-start w-[40%] p-3 bg-red rounded-2xl"><img class="w-[10%] min-w-[10%]" src="./src/images/pizza.png" alt="Icon of a pizza slice"><h2 class="p-1 text-2xl min-w-[26rem] w-[26rem]">${pizza.numberOrdered} x ${pizza.size}in with `;
+    table += `<div class="flex gap-10 items-center justify-start w-[40%] p-3 bg-red rounded-sm"><img class="w-[10%] min-w-[10%]" src="./src/images/pizza.png" alt="Icon of a pizza slice"><h2 class="p-1 text-2xl min-w-[26rem] w-[26rem]">${pizza.numberOrdered} x ${pizza.size}in with `;
 
     if (pizza.toppings.length < 1) {
       table += `no toppings`;
@@ -62,11 +63,11 @@ function createTable(order) {
   const taxTotal = Number(order.price) * Number(order.taxRate);
   const total = Number(taxTotal) + Number(order.price);
 
-  table += `<div class="flex justify-center items-center gap-12 bg-white text-black w-[40%] h-[4rem] rounded-2xl"><h3>Price: $${
+  table += `<div class="flex justify-center items-center gap-12 bg-white text-black w-[40%] h-[4rem] rounded-sm"><h3>Price: $${
     order.price
   }</h3><h3>Tax: $${taxTotal.toFixed(2)}</h3></div>
   
-  <div class="flex justify-center items-center gap-12 bg-white text-black mb-4 w-[40%] h-[4rem] rounded-2xl"><h3>Total Price: $${total.toFixed(
+  <div class="flex justify-center items-center gap-12 bg-white text-black mb-4 w-[40%] h-[4rem] rounded-sm"><h3>Total Price: $${total.toFixed(
     2
   )}</h3></div>`;
   return table;

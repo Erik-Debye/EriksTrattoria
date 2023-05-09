@@ -80,13 +80,16 @@ login.post('/', async (req, res) => {
       res.cookie('username', username);
       req.session.isAuthorized = true;
       req.session.userRole = userRole;
-      //TEMP
-      res.redirect('/');
-      // userRole === 'manager'
-      //   ? res.redirect('/admin')
-      //   : userRole === 'employee'
-      //   ? res.redirect('/order-queue')
-      //   : res.redirect('/dashboard');
+      //direct right to the users profile page
+      if (userRole === 'manager') {
+        res.cookie('orderNum', '');
+        res.redirect('/admin');
+      } else if (userRole === 'employee') {
+        res.cookie('orderNum', '');
+        res.redirect('/order-queue');
+      } else {
+        res.redirect('/');
+      }
     } else {
       const data = {
         username: req.cookies.username,
