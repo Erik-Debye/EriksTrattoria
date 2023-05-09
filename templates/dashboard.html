@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Albert+Sans&family=Bubblegum+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Albert+Sans&family=Noto+Serif+JP&display=swap"
       rel="stylesheet"
     />
     <!-- Favicons -->
@@ -21,19 +21,88 @@
     <meta name="theme-color" content="#000000" />
     <!-- End Favicons -->
     <link rel="stylesheet" href="./styles.css" />
-    <title>Dashboard</title>
+    <title>Order Queue</title>
   </head>
   <body class="bg-white">
     <header class="h-[15vh] text-red flex items-center justify-between pl-20 pr-20">
       <img class="h-[12vh]" src="./src/svg/Eriks Trattoria.svg" alt="Erik's Trattoria Logo" />
       <ul class="flex flex-row font-sans items-center justify-evenly gap-10 text-2xl">
         <li class="cursor-pointer">
-          <a class='pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl' href="/">Home</a>
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-sm" href="/">Home</a>
         </li>
       </ul>
     </header>
-    <section class="bg-blue h-[85vh] flex flex-col mr-auto ml-auto items-center justify-start gap-10">
-      {{pagename}}
+    <section class="bg-blue h-fit min-h-[85vh] flex flex-col mr-auto ml-auto items-center justify-start gap-10">
+      <div class="flex w-[90vw] mr-auto ml-auto justify-between items-center">
+        <h1 class="text-white font-serif text-center text-6xl pt-8 pb-4">Hi {{name}}!</h1>
+        <div class="flex flex-col font-sans text-2xl text-white">
+          <h2>Today is {{date}}</h2>
+          <h2 id="time"></h2>
+          <!-- Needs to be front end -->
+          <script defer>
+            function getTime() {
+              const date = new Date();
+              let hh = date.getHours();
+              let mm = date.getMinutes();
+              let ss = date.getSeconds();
+              let tod = 'am';
+              hh === 0 ? (hh = 12) : hh;
+              if (hh > 12) {
+                hh = hh - 12;
+                tod = 'pm';
+              }
+
+              hh < 10 ? (hh = `0${hh}`) : hh;
+              mm < 10 ? (mm = `0${mm}`) : mm;
+              ss < 10 ? (ss = `0${ss}`) : ss;
+              const timeStr = `The time is ${hh}:${mm}:${ss} ${tod}`;
+
+              const timeEl = document.getElementById('time');
+              timeEl.textContent = timeStr;
+            }
+            setInterval(getTime, 1000);
+          </script>
+        </div>
+      </div>
+      <!-- Active orders -->
+      <div class="w-90vw mr-auto ml-auto flex flex-col items-start">
+        <h2 class="text-white font-sans text-4xl pb-2 pl-3">Active Orders</h2>
+        {{#if activeOrderTable}}
+        <div class="overflow-auto max-h-[400px] min-h-[220px] w-full">{{{activeOrderTable}}}</div>
+        {{else}}
+        <table class="w-[1500px] h-fit overflow-auto mr-auto ml-auto border-black border-2 bg-clearWhite rounded-sm">
+          <thead class="text-clearWhite bg-black font-sans text-2xl rounded-t-sm">
+            <tr class="rounded-t-sm">
+              <th class="border-r border-white border-dashed pt-1 pb-2 pl-2 pr-2 rounded-tl-md">
+                There are no active orders
+              </th>
+            </tr>
+          </thead>
+        </table>
+        {{/if}}
+      </div>
+      <!-- Completed orders -->
+      <div class="w-90vw mr-auto ml-auto flex flex-col items-start">
+        <h2 class="text-white font-sans text-4xl pb-2 pl-3">Completed Orders</h2>
+        {{#if completedOrderTable}}
+        <div class="overflow-auto max-h-[400px] min-h-[220px] w-full">{{{completedOrderTable}}}</div>
+        {{else}}
+        <table class="w-[1500px] h-fit overflow-auto mr-auto ml-auto border-black border-2 bg-clearWhite rounded-sm">
+          <thead class="text-clearWhite bg-black font-sans text-2xl rounded-t-sm">
+            <tr class="rounded-t-sm">
+              <th class="border-r border-white border-dashed pt-1 pb-2 pl-2 pr-2 rounded-tl-sm">
+                There have been no orders
+              </th>
+            </tr>
+          </thead>
+        </table>
+        {{/if}}
+      </div>
+      <!-- Create a new order -->
+      <div class="w-[1500px] mr-auto ml-auto flex items-center justify-center">
+        <button class="text-3xl text-red mt-8 bg-white p-3 rounded-sm cursor-pointer hover:text-orange hover:bg-red">
+          <a href="/order">Create a New Order</a>
+        </button>
       </div>
     </section>
   </body>

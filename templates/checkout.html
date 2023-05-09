@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Albert+Sans&family=Bubblegum+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Albert+Sans&family=Noto+Serif+JP&display=swap"
       rel="stylesheet"
     />
     <!-- Favicons -->
@@ -28,16 +28,19 @@
       <img class="h-[12vh]" src="./src/svg/Eriks Trattoria.svg" alt="Erik's Trattoria Logo" />
       <ul class="flex flex-row font-sans items-center justify-evenly gap-10 text-2xl">
         <li class="cursor-pointer">
-          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/">Home</a>
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-sm" href="/">Home</a>
         </li>
         <li class="cursor-pointer">
-          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/login">Login</a>
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-sm" href="/dashboard">Dashboard</a>
         </li>
         <li class="cursor-pointer">
-          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/register">Register</a>
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-sm" href="/login">Login</a>
         </li>
         <li class="cursor-pointer">
-          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/order">Order</a>
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-sm" href="/register">Register</a>
+        </li>
+        <li class="cursor-pointer">
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-sm" href="/order">Order</a>
         </li>
       </ul>
     </header>
@@ -61,25 +64,27 @@
           method="post"
           class="flex flex-col gap-6 items-start ml-auto mr-auto w-[70%] h-full justify-between text-black"
         >
+          {{#if filledForm}} {{{filledForm}}} {{else}}
           <div class="flex gap-8 w-full justify-between">
             <label class="text-white" for="fullname">Enter your full name:</label>
-            <input class="p-2 rounded-2xl text-black font-sans" type="text" id="fullname" name="fullname" required="" />
+            <input class="p-2 rounded-sm text-black font-sans" type="text" id="fullname" name="fullname" required="" />
           </div>
           <div class="flex gap-8 w-full justify-between">
             <label class="text-white" for="phone">Enter your phone number:</label>
-            <input class="p-2 rounded-2xl text-black font-sans" type="tel" id="phone" name="phone" required="" />
+            <input class="p-2 rounded-sm text-black font-sans" type="tel" id="phone" name="phone" required="" />
           </div>
           <div class="flex gap-8 w-full justify-between">
             <label class="text-white" for="email">Enter your email:</label>
-            <input class="p-2 rounded-2xl text-black font-sans" type="email" id="email" name="email" required="" />
+            <input class="p-2 rounded-sm text-black font-sans" type="email" id="email" name="email" required="" />
           </div>
           <div class="flex gap-8 w-full justify-between">
             <label class="text-white" for="street">Enter your street address:</label>
-            <input class="p-2 rounded-2xl text-black font-sans" type="text" id="street" name="street" required="" />
+            <input class="p-2 rounded-sm text-black font-sans" type="text" id="street" name="street" required="" />
           </div>
           <div class="flex gap-8 w-full justify-between">
             <label class="text-white" for="zip">Enter your 5 digit Zip Code:</label>
-            <input class="p-2 rounded-2xl text-black font-sans" list="codes" id="zip" name="zip" required="" />
+            <input class="p-2 rounded-sm text-black font-sans" list="codes" id="zip" name="zip" required="" />
+            {{/if}}
             <datalist id="codes">
               <option value="60001"></option>
               <option value="60002"></option>
@@ -1676,7 +1681,7 @@
           <div class="flex gap-8 w-full justify-between">
             <label class="text-white" for="comment">Order/Delivery Notes:</label>
             <textarea
-              class="p-2 rounded-2xl text-black font-sans overflow-y-hidden bg-white"
+              class="p-2 rounded-sm text-black font-sans overflow-y-hidden bg-white"
               id="comment"
               name="comment"
             ></textarea>
@@ -1694,7 +1699,7 @@
             </script>
           </div>
           <input
-            class="text-2xl cursor-pointer self-center text-red bg-white p-3 rounded-2xl hover:text-orange hover:bg-red"
+            class="text-2xl cursor-pointer self-center text-red bg-white p-3 rounded-sm hover:text-orange hover:bg-red"
             type="submit"
             id="details"
             name="details"

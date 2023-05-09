@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Albert+Sans&family=Bubblegum+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Albert+Sans&family=Noto+Serif+JP&display=swap"
       rel="stylesheet"
     />
     <!-- Favicons -->
@@ -28,12 +28,125 @@
       <img class="h-[12vh]" src="./src/svg/Eriks Trattoria.svg" alt="Erik's Trattoria Logo" />
       <ul class="flex flex-row font-sans items-center justify-evenly gap-10 text-2xl">
         <li class="cursor-pointer">
-          <a class='pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl' href="/">Home</a>
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-sm" href="/">Home</a>
         </li>
       </ul>
     </header>
-    <section class="bg-blue h-[85vh] flex flex-col mr-auto ml-auto items-center justify-start gap-10">
-      {{pagename}}
+    <section class="bg-blue h-fit min-h-[85vh] flex flex-col mr-auto ml-auto items-center justify-start gap-10">
+      <div class="flex w-[90vw] mr-auto ml-auto justify-between items-center">
+        <h1 class="text-white font-serif text-center text-6xl pt-8 pb-4">Hi {{name}}!</h1>
+        <div class="flex flex-col font-sans text-2xl text-white">
+          <h2>Today is {{date}}</h2>
+          <h2 id="time"></h2>
+          <!-- Needs to be front end -->
+          <script defer>
+            function getTime() {
+              const date = new Date();
+              let hh = date.getHours();
+              let mm = date.getMinutes();
+              let ss = date.getSeconds();
+              let tod = 'am';
+              hh === 0 ? (hh = 12) : hh;
+              if (hh > 12) {
+                hh = hh - 12;
+                tod = 'pm';
+              }
+
+              hh < 10 ? (hh = `0${hh}`) : hh;
+              mm < 10 ? (mm = `0${mm}`) : mm;
+              ss < 10 ? (ss = `0${ss}`) : ss;
+              const timeStr = `The time is ${hh}:${mm}:${ss} ${tod}`;
+
+              const timeEl = document.getElementById('time');
+              timeEl.textContent = timeStr;
+            }
+            setInterval(getTime, 1000);
+          </script>
+        </div>
+      </div>
+      <!-- Active orders -->
+      <div class="w-90vw mr-auto ml-auto flex flex-col items-start">
+        <h2 class="text-white font-sans text-4xl pb-2 pl-3">Active Orders</h2>
+        {{#if activeOrderTable}}
+        <div class="overflow-auto max-h-[400px] min-h-[220px] w-full">{{{activeOrderTable}}}</div>
+        {{else}}
+        <table class="w-[1500px] h-fit overflow-auto mr-auto ml-auto border-black border-2 bg-clearWhite rounded-sm">
+          <thead class="text-clearWhite bg-black font-sans text-2xl rounded-t-sm">
+            <tr class="rounded-t-sm">
+              <th class="border-r border-white border-dashed pt-1 pb-2 pl-2 pr-2 rounded-tl-sm">
+                There are no active orders
+              </th>
+            </tr>
+          </thead>
+        </table>
+        {{/if}}
+      </div>
+      <!-- Last 15 orders -->
+      <div class="w-90vw mr-auto ml-auto flex flex-col items-start">
+        <h2 class="text-white font-sans text-4xl pb-2 pl-3">Last 15 Completed Orders</h2>
+        {{#if lastOrdersTable}}
+        <div class="overflow-auto max-h-[400px] min-h-[220px] w-full">{{{lastOrdersTable}}}</div>
+        {{else}}
+        <table class="w-[1500px] h-fit overflow-auto mr-auto ml-auto border-black border-2 bg-clearWhite rounded-sm">
+          <thead class="text-clearWhite bg-black font-sans text-2xl rounded-t-sm">
+            <tr class="rounded-t-sm">
+              <th class="border-r border-white border-dashed pt-1 pb-2 pl-2 pr-2 rounded-tl-sm">
+                There have been no orders
+              </th>
+            </tr>
+          </thead>
+        </table>
+        {{/if}}
+      </div>
+      <!-- Create a new order -->
+      <div class="w-90vw mr-auto ml-auto flex flex-col items-start">
+        <h2 class="text-white font-sans text-4xl pb-2 pl-3">Create a New Order</h2>
+        {{#if usersTable}} {{{usersTable}}} {{else}} {{#if empErr}}
+        <div class="w-[1500px] p-2 text-black bg-orange text-xl"><p>{{empErr}}</p></div>
+        {{/if}}
+        <form
+          action="/order-queue/create"
+          method="get"
+          class="flex gap-4 bg-black pl-2 pr-2 pb-1 pt-1 w-[1500px] h-[100px]"
+        >
+          <p class="flex items-center gap-4">
+            <label class="text-clearWhite font-sans text-xl w-max pl-2" for="phoneNum">Customer Lookup by phone:</label>
+            <input
+              class="p-2 rounded-sm text-black text-xl bg-clearWhite"
+              type="tel"
+              id="phoneNum"
+              name="phoneNum"
+              placeholder="224-885-7216"
+            />
+          </p>
+          <input
+            class="pr-2 pl-2 pt-1 pb-1 w-fit h-fit bg-clearWhite text-xl text-black rounded-sm cursor-pointer hover:bg-orange hover:text-clearWhite mt-auto mb-auto"
+            type="submit"
+            id="lookup"
+            name="lookup"
+            value="Search for Customer"
+          />
+        </form>
+        {{/if}}
+        <form
+          action="/order-queue/new-order/guest"
+          method="post"
+          class="flex self-center gap-2 border-black border-dashed pt-4 pb-4 pl-3 pr-3 mt-4 mb-4"
+        >
+          <input
+            class="pr-3 pl-3 pt-2 pb-2 w-full bg-yellow rounded-sm text-2xl font-sans text-black cursor-pointer hover:bg-green"
+            type="submit"
+            id="createGuest"
+            name="createGuest"
+            value="Create Order for Guest"
+          /><input
+            class="pr-3 pl-3 pt-2 pb-2 w-full bg-yellow rounded-sm text-2xl font-sans text-black cursor-pointer hover:bg-orange"
+            type="submit"
+            id="searchNew"
+            name="searchNew"
+            value="Search Again"
+          />
+        </form>
       </div>
     </section>
   </body>

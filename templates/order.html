@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Albert+Sans&family=Bubblegum+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Albert+Sans&family=Noto+Serif+JP&display=swap"
       rel="stylesheet"
     />
     <!-- Favicons -->
@@ -28,16 +28,19 @@
       <img class="h-[12vh]" src="./src/svg/Eriks Trattoria.svg" alt="Erik's Trattoria Logo" />
       <ul class="flex flex-row font-sans items-center justify-evenly gap-10 text-2xl">
         <li class="cursor-pointer">
-          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/">Home</a>
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-sm" href="/">Home</a>
         </li>
         <li class="cursor-pointer">
-          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/login">Login</a>
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-sm" href="/dashboard">Dashboard</a>
         </li>
         <li class="cursor-pointer">
-          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/register">Register</a>
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-sm" href="/login">Login</a>
         </li>
         <li class="cursor-pointer">
-          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-2xl" href="/order">Order</a>
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-sm" href="/register">Register</a>
+        </li>
+        <li class="cursor-pointer">
+          <a class="pl-3 pr-3 pt-2 pb-2 hover:bg-red hover:text-orange rounded-sm" href="/order">Order</a>
         </li>
       </ul>
     </header>
@@ -120,7 +123,7 @@
             <p class="flex items-center gap-4">
               <label for="amount">How Many:</label>
               <input
-                class="p-2 rounded-2xl text-black font-sans"
+                class="p-2 rounded-sm text-black font-sans"
                 type="text"
                 id="amount"
                 name="amount"
@@ -130,7 +133,7 @@
               />
             </p>
             <input
-              class="text-2xl cursor-pointer text-red bg-white p-3 rounded-2xl hover:text-orange hover:bg-red"
+              class="text-2xl cursor-pointer text-black bg-white p-3 rounded-sm hover:bg-green"
               type="submit"
               id="addorder"
               name="addorder"
